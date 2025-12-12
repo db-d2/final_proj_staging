@@ -2,9 +2,6 @@
 
 Implements wall-clock time logging during training to generate learning curves
 comparing convergence rates of different unlearning methods.
-
-Feedback item: "For efficiency/runtime you might want to log a metric like AUC vs
-wall clock time, then plot a learning curve to compare the actual rates."
 """
 
 import json

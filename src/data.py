@@ -112,7 +112,6 @@ def normalize_and_select_hvgs(
     # Total count normalization (CP10K)
     sc.pp.normalize_total(adata, target_sum=1e4)
 
-    # Log transformation
     sc.pp.log1p(adata)
 
     # Seurat v3 HVG selection
@@ -128,7 +127,7 @@ def normalize_and_select_hvgs(
     print(f"  Selected {n_hvg} highly variable genes")
 
     adata_hvg = adata[:, adata.var["highly_variable"]].copy()
-    print(f"  Final shape: {adata_hvg.n_obs} cells × {adata_hvg.n_vars} genes")
+    print(f"  Final shape: {adata_hvg.n_obs} cells x {adata_hvg.n_vars} genes")
 
     return adata_hvg
 

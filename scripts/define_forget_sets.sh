@@ -7,7 +7,7 @@ export MKL_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 
-# Disable OpenMP nested parallelism (silences deprecation warning)
+# Disable OpenMP nested parallelism
 export OMP_MAX_ACTIVE_LEVELS=1
 
 echo "Defining forget sets with single-threaded execution..."

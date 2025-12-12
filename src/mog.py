@@ -104,7 +104,6 @@ def generate_mog_data(
 
     # Generate covariances
     if scenario == 'separated':
-        # Isotropic, moderate variance
         covs = [np.eye(d) * 0.5 for _ in range(K)]
     elif scenario == 'overlapping':
         # Larger variance for overlap
@@ -178,7 +177,7 @@ def create_forget_set(
         forget_mask[forget_indices] = True
 
     elif scenario == 'outliers':
-        # Not implemented in this version - would require distance computation
+        # Not implemented - would require distance computation
         raise NotImplementedError("Outlier scenario requires X data, not just labels")
 
     else:

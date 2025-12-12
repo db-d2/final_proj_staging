@@ -168,11 +168,9 @@ def evaluate_model(model_path, split_path, attacker_variant='v1'):
             attack_features = build_attack_features(features, variant=attacker_variant)
         return attack_features
 
-    # Get features
     forget_feats = get_features(forget_indices)
     unseen_feats = get_features(matched_indices)
 
-    # Get predictions
     with torch.no_grad():
         forget_probs = torch.sigmoid(attacker(forget_feats.to(device))).cpu().numpy()
         unseen_probs = torch.sigmoid(attacker(unseen_feats.to(device))).cpu().numpy()

@@ -177,15 +177,12 @@ def _stratified_evaluation(
         cluster_weights.append(len(cluster_labels))
 
     if len(cluster_aucs) == 0:
-        # No clusters with both classes - fall back to global
         return compute_attack_metrics(predictions, labels)
 
-    # Weighted average
     cluster_aucs = np.array(cluster_aucs)
     cluster_weights = np.array(cluster_weights)
     avg_auc = np.average(cluster_aucs, weights=cluster_weights)
 
-    # For other metrics, use global with a note
     metrics = compute_attack_metrics(predictions, labels)
     metrics['auc'] = float(avg_auc)
     metrics['n_clusters_evaluated'] = len(cluster_aucs)

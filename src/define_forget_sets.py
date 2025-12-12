@@ -141,7 +141,7 @@ def define_scattered_forget_set(
 def main(args):
     set_global_seed(args.seed)
 
-    # Configure scanpy for single-threaded execution to avoid OpenMP conflicts
+    # Configure scanpy to avoid OpenMP conflicts
     sc.settings.n_jobs = 1
 
     print("Loading preprocessed data...")
@@ -173,7 +173,6 @@ def main(args):
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Define structured forget set
     print("\n" + "="*60)
     print("STRUCTURED FORGET SET")
     print("="*60)

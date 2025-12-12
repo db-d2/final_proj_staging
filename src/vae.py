@@ -221,12 +221,6 @@ def nb_loss(x, mean, dispersion, eps=1e-8, per_cell=False):
 
     Returns:
         MSE loss
-
-    Note:
-        Using MSE instead of full NB NLL for numerical stability with log-normalized data.
-        This is a common practice in scRNA-seq VAE implementations.
-
-        per_cell=True gives O(1) magnitude losses suitable for balancing with other O(1) terms.
     """
     mse = F.mse_loss(mean, x, reduction='none')
     if per_cell:
@@ -302,10 +296,6 @@ def vae_loss(x, model_output, likelihood='nb', library_size=None, beta=1.0, free
 
     Returns:
         Tuple of (total_loss, recon_loss, kl_loss)
-
-    Note:
-        per_cell=True is recommended for adversarial unlearning to balance loss magnitudes
-        between privacy (O(1)) and utility (O(1)) terms.
     """
     if likelihood == 'nb':
         mean, dispersion, mu, logvar, z = model_output

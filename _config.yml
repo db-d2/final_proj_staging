@@ -1,0 +1,36 @@
+# Jekyll configuration for GitHub Pages
+title: "Machine Unlearning for Single-Cell VAEs"
+description: "Comparing adversarial and Fisher-based unlearning methods for privacy-preserving single-cell RNA-seq models"
+author: "David Benson"
+
+# GitHub Pages settings
+baseurl: "/Machine_Unlearning"
+url: "https://db-d2.github.io"
+
+# Theme
+theme: jekyll-theme-cayman
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Kramdown settings for better math support
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+# Exclude files from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - data/
+  - outputs/
+  - src/
+  - scripts/
+  - notebooks/
+  - venv/
+  - __pycache__/
+  - "*.ipynb"
+  - "*.h5ad"
+  - "*.pt"

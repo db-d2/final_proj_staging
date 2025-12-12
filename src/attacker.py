@@ -29,7 +29,10 @@ class MLPAttacker(nn.Module):
         use_spectral_norm: Whether to use spectral normalization (default: False)
     """
 
-    def __init__(self, input_dim: int, hidden_dims: list = [256, 256], dropout: float = 0.3, use_spectral_norm: bool = False):
+    def __init__(self, input_dim: int, 
+                 hidden_dims: list = [256, 256], 
+                 dropout: float = 0.3, 
+                 use_spectral_norm: bool = False):
         super().__init__()
 
         layers = []
@@ -252,20 +255,15 @@ def compute_attack_metrics(predictions: np.ndarray, labels: np.ndarray) -> Dict[
     """
     from sklearn.metrics import roc_auc_score, roc_curve, accuracy_score
 
-    # ROC AUC
     auc = roc_auc_score(labels, predictions)
 
-    # Accuracy
     acc = accuracy_score(labels, (predictions >= 0.5).astype(int))
 
-    # TPR at specific FPR
     fpr, tpr, thresholds = roc_curve(labels, predictions)
 
-    # TPR at 1% FPR
     idx = np.where(fpr <= 0.01)[0]
     tpr_at_fpr_01 = tpr[idx[-1]] if len(idx) > 0 else 0.0
 
-    # TPR at 5% FPR
     idx = np.where(fpr <= 0.05)[0]
     tpr_at_fpr_05 = tpr[idx[-1]] if len(idx) > 0 else 0.0
 
@@ -277,7 +275,8 @@ def compute_attack_metrics(predictions: np.ndarray, labels: np.ndarray) -> Dict[
     }
 
 
-def compute_confidence_interval(values: np.ndarray, confidence: float = 0.95) -> Tuple[float, float]:
+def compute_confidence_interval(values: np.ndarray, 
+                                confidence: float = 0.95) -> Tuple[float, float]:
     """Compute confidence interval using bootstrap.
 
     Args:
